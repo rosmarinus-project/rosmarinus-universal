@@ -1,6 +1,6 @@
 {
   "name": "@rosmarinus/common-utils",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "some common utils for rosmarinus",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
