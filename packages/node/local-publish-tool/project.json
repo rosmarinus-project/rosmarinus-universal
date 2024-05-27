@@ -1,0 +1,36 @@
+{
+  "name": "node/local-publish-tool",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/node/local-publish-tool",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run dev"],
+        "cwd": "packages/node/local-publish-tool"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "packages/node/local-publish-tool"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test:unit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run test:unit"],
+        "cwd": "packages/node/local-publish-tool"
+      }
+    },
+    "beta": {
+      "executor": "@rosmarinus/nx-plugin:beta"
+    },
+    "release": {
+      "executor": "@rosmarinus/nx-plugin:release"
+    }
+  }
+}

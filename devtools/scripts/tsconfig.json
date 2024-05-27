@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "ESNext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "noImplicitAny": false
+  },
+  "typeRoots": ["./node_modules/@types"]
+}

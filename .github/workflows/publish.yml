@@ -1,0 +1,49 @@
+name: Publish Package With Changesets
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  id-token: write
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+  publish:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      # prepare the develop environment
+      - name: checkout code repository
+        uses: actions/checkout@v4
+
+      - name: setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      
+      - name: install dependencies
+        run: pnpm install
+      - name: unit test
+        run: pnpm exec nx affected --target=test:unit --base=$GITHUB_SHA --head=HEAD --verbose
+        # build and publish
+      - name: create and publish versions
+        uses: jamilomar/autopublish-changesets-action@v0.0.11
+        with:
+          versionScript: pnpm ci:version
+          publishScript: pnpm exec nx affected --target=release --base=$GITHUB_SHA --head=HEAD --verbose
+          commitMessage: 'chore: publish changeset'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_NEW }}

@@ -1,0 +1,61 @@
+{
+  "name": "@rosmarinus/import-map-generator",
+  "version": "0.2.6",
+  "description": "a tool to generate a import map json",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bin": {
+    "rosmarinus-import-map-generator": "dist/bin/cli.cjs"
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/pack/import-map-generator",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "import",
+    "map",
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@rosmarinus/compiler-kit": "workspace:^0.2.1",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@types/fs-extra": "^9.0.12",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.14.0",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "typescript": "^5.2.2"
+  }
+}

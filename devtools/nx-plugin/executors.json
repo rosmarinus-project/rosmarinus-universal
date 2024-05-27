@@ -1,0 +1,14 @@
+{
+  "executors": {
+    "beta": {
+      "implementation": "./src/executors/publish/beta",
+      "schema": "./src/executors/publish/schema.json",
+      "description": "publish beta"
+    },
+    "release": {
+      "implementation": "./src/executors/publish/release",
+      "schema": "./src/executors/publish/schema.json",
+      "description": "publish release"
+    }
+  }
+}

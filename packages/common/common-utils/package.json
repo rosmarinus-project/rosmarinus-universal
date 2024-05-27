@@ -1,0 +1,93 @@
+{
+  "name": "@rosmarinus/common-utils",
+  "version": "3.0.8",
+  "description": "some common utils for rosmarinus",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/es/index.js"
+    },
+    "./functions/*": {
+      "types": "./dist/es/functions/*.d.ts",
+      "require": "./dist/cjs/functions/*.js",
+      "import": "./dist/es/functions/*.js"
+    },
+    "./modules/*": {
+      "types": "./dist/es/modules/*.d.ts",
+      "require": "./dist/cjs/modules/*.js",
+      "import": "./dist/es/modules/*.js"
+    },
+    "./babel-plugin": "./dist/cjs-babel-plugin/babel-plugin.js",
+    "./plugins": {
+      "types": "./dist/es-plugin/index.d.ts",
+      "require": "./dist/cjs-plugin/index.js",
+      "import": "./dist/es-plugin/index.js"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "npm run build:lib && npm run build:map",
+    "build:lib": "rimraf dist && rollup -c rollup.config.js",
+    "build:map": "node ../../pack/import-map-generator/dist/bin/cli.cjs gen-export-map --config map.config.cjs",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/common/common-utils",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "utils",
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "optionalDependencies": {
+    "vite": "^4.5.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rosmarinus/babel-plugin-tree-cutting": "workspace:^2.1.3",
+    "fast-safe-stringify": "^2.1.1",
+    "performance-now": "^2.1.0",
+    "tslib": "^2.6.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@rosmarinus/import-map-generator": "workspace:*",
+    "@types/babel__core": "^7.20.4",
+    "@types/babel__helper-plugin-utils": "^7.10.3",
+    "@types/fs-extra": "^9.0.12",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.14.0",
+    "@types/triple-beam": "^1.3.5",
+    "@types/uuid": "^9.0.6",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  }
+}

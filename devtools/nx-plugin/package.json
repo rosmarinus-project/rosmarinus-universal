@@ -1,0 +1,18 @@
+{
+  "name": "@rosmarinus/nx-plugin",
+  "version": "0.0.1",
+  "generators": "./generators.json",
+  "executors": "./executors.json",
+  "private": "true",
+  "dependencies": {
+    "@nx/devkit": "^19.1.0",
+    "fs-extra": "^11.2.0",
+    "semver": "^7.6.2",
+    "zx": "^8.1.1"
+  },
+  "devDependencies": {
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/semver": "^7.5.8"
+  }
+}

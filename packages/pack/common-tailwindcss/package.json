@@ -1,0 +1,60 @@
+{
+  "name": "@rosmarinus/common-tailwindcss",
+  "version": "0.3.1",
+  "description": "common-tailwindcss for rosmarinus projects",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/es/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/pack/common-tailwindcss",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "csstype": "^3.1.2",
+    "tslib": "^2.6.2"
+  },
+  "optionalDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.14.0",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.2.2"
+  }
+}

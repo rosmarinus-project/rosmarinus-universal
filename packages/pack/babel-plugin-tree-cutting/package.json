@@ -1,0 +1,61 @@
+{
+  "name": "@rosmarinus/babel-plugin-tree-cutting",
+  "version": "2.1.3",
+  "description": "a babel plugin to make project tree shaking possible",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/es/index.js"
+    },
+    "./*": "./*"
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/pack/babel-plugin-tree-cutting",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "utils",
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@babel/types": "^7.23.3",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@types/babel__core": "^7.20.4",
+    "@types/babel__helper-plugin-utils": "^7.10.3",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.14.0",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "typescript": "^5.2.2"
+  }
+}

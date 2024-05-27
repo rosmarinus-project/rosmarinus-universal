@@ -1,0 +1,20 @@
+{
+  "name": "@rosmarinus/scripts",
+  "version": "0.0.1",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "new:project": "tsx src/new-project.ts"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.0",
+    "fs-extra": "^11.2.0",
+    "handlebars": "^4.7.8",
+    "tsx": "^4.11.0"
+  },
+  "devDependencies": {
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.12.12"
+  }
+}

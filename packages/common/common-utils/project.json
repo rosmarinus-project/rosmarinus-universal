@@ -1,0 +1,36 @@
+{
+  "name": "common/common-utils",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/common/common-utils",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run dev"],
+        "cwd": "packages/common/common-utils"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "packages/common/common-utils"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test:unit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run test:unit"],
+        "cwd": "packages/common/common-utils"
+      }
+    },
+    "beta": {
+      "executor": "@rosmarinus/nx-plugin:beta"
+    },
+    "release": {
+      "executor": "@rosmarinus/nx-plugin:release"
+    }
+  }
+}

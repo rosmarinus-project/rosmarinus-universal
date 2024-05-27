@@ -1,0 +1,65 @@
+{
+  "name": "@rosmarinus/local-publish-tool",
+  "version": "2.0.1",
+  "description": "local publish tool for rosmarinus",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/es/index.js",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bin": {
+    "rosmarinus-publish": "dist/cjs/index.cjs"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/node/local-publish-tool",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "publish",
+    "rosmarinus",
+    "tool"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^3.2.0",
+    "@rosmarinus/i18n": "^1.2.1",
+    "commander": "^10.0.1",
+    "conventional-changelog": "^5.1.0",
+    "fs-extra": "^10.0.0",
+    "semver": "^7.5.4",
+    "shelljs": "^0.8.5",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.1",
+    "@types/conventional-changelog": "^3.1.5",
+    "@types/fs-extra": "^9.0.12",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^18.14.0",
+    "@types/semver": "^7.5.6",
+    "@types/shelljs": "^0.8.12",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "lint-staged": "^11.1.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "typescript": "^5.2.2"
+  }
+}

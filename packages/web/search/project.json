@@ -1,0 +1,36 @@
+{
+  "name": "web/search",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/web/search",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run dev"],
+        "cwd": "packages/web/search"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "packages/web/search"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test:unit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run test:unit"],
+        "cwd": "packages/web/search"
+      }
+    },
+    "beta": {
+      "executor": "@rosmarinus/nx-plugin:beta"
+    },
+    "release": {
+      "executor": "@rosmarinus/nx-plugin:release"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "targetDefaults": {
+    "dev": {
+      "dependsOn": ["^build"]
+    },
+    "test:unit": {
+      "dependsOn": ["^build"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "beta": {
+      "dependsOn": ["build"]
+    },
+    "release": {
+      "dependsOn": ["build"]
+    }
+  },
+  "extends": "./node_modules/nx/presets/npm.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "./node_modules/nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "config"],
+        "parallel": 8
+      }
+    }
+  },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": true
+    }
+  },
+  "plugins": []
+}

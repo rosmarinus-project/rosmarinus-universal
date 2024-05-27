@@ -1,0 +1,36 @@
+{
+  "name": "web/potato-observer",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "packages/web/potato-observer",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run dev"],
+        "cwd": "packages/web/potato-observer"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "packages/web/potato-observer"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test:unit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run test:unit"],
+        "cwd": "packages/web/potato-observer"
+      }
+    },
+    "beta": {
+      "executor": "@rosmarinus/nx-plugin:beta"
+    },
+    "release": {
+      "executor": "@rosmarinus/nx-plugin:release"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@rosmarinus/search",
+  "version": "0.1.22",
+  "description": "search for rosmarinus projects",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/es/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/web/search",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@rosmarinus/common-utils": "workspace:^3.0.4",
+    "pinyin-match": "^1.2.5",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-typescript": "^7.23.3",
+    "@jest/globals": "^29.7.0",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@rosmarinus/eslint-config-rosmarinus": "latest",
+    "@types/node": "^18.14.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.6.1",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "name": "@rosmarinus/compiler-kit",
+  "version": "0.2.2",
+  "description": "compiler kit for rosmarinus projects",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/es/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "test:unit": "jest --runInBand"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "packages/common/compiler-kit",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "keywords": [
+    "compiler",
+    "rosmarinus"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/generator": "^7.23.3",
+    "@babel/parser": "^7.23.3",
+    "@babel/plugin-proposal-decorators": "^7.23.3",
+    "@babel/plugin-transform-typescript": "^7.23.3",
+    "@babel/traverse": "^7.23.3",
+    "@babel/types": "^7.23.3",
+    "dom-serializer": "^2.0.0",
+    "domhandler": "^5.0.3",
+    "htmlparser2": "^9.0.0",
+    "json5": "^2.2.3",
+    "lodash-es": "^4.17.21",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@rosmarinus/eslint-config-rosmarinus": "^1.0.4",
+    "@rosmarinus/common-plugins": "workspace:*",
+    "@types/babel__generator": "^7.6.7",
+    "@types/babel__traverse": "^7.20.4",
+    "@types/fs-extra": "^9.0.12",
+    "@types/jest": "^27.4.0",
+    "@types/lodash-es": "^4.17.11",
+    "@types/node": "^18.14.0",
+    "husky": "^8.0.3",
+    "jest": "^27.4.7",
+    "jest-json-reporter": "^1.2.2",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.3.0",
+    "typescript": "^5.2.2"
+  }
+}

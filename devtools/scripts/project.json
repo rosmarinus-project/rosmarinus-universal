@@ -1,0 +1,15 @@
+{
+  "name": "devtools/scripts",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "type": "library",
+  "sourceRoot": "devtools/scripts",
+  "targets": {
+    "new:prject": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm run new:project"],
+        "cwd": "devtools/scripts"
+      }
+    }
+  }
+}

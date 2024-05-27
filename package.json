@@ -1,0 +1,41 @@
+{
+  "name": "@rosmarinus/rosmarinus-universal",
+  "private": true,
+  "version": "0.0.1",
+  "description": "monorepo for all rosmarinus projects",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rosmarinus-project/rosmarinus-universal.git"
+  },
+  "scripts": {
+    "dev": "pnpm exec nx dev",
+    "build": "pnpm exec nx build",
+    "build:all": "nx run-many --target=build --all",
+    "test:unit": "pnpm exec nx test:unit",
+    "test:unit:all": "nx run-many --target=test:unit --all",
+    "ci:version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
+    "ci:publish": "pnpm build:all && pnpm publish -r --no-git-checks --access public",
+    "publish:beta": "pnpm exec nx affected publish:beta",
+    "publish:release": "pnpm exec nx affected --target=release",
+    "new:project": "pnpm --filter=@rosmarinus/scripts run new:project",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "rosmarinus",
+    "monorepo"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.3",
+    "@nx/js": "^19.0.7",
+    "@nx/workspace": "^19.0.7",
+    "@swc-node/register": "^1.9.1",
+    "@swc/core": "^1.5.7",
+    "@swc/helpers": "^0.5.11",
+    "globby": "^14.0.1",
+    "husky": "^9.0.11",
+    "nx": "19.0.6"
+  },
+  "packageManager": "pnpm@9.1.2"
+}

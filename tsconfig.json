@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "checkJs": false,
+    "declaration": true,
+    "declarationMap": false,
+    "lib": ["DOM", "ES6", "ES2016", "ES2017", "ES2018"],
+    "module": "ESNext",
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "ES2015",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": false,
+
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
+
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "paths": {
+      // 模块名到路径映射列表
+      "@rosmarinus/nx-plugin": ["devtools/nx-plugin/src/index.ts"]
+    }
+  }
+}

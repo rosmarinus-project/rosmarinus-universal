@@ -1,0 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+log_emails=$(git config user.email | tr -d '"')
+
+case "${log_emails}" in
+  *@gmail.com|*@qq.com|*@users.noreply.github.com)
+    echo email $log_emails validate success
+    ;;
+  *)
+    # 英文输出
+    echo local commit email $log_emails validate failed, need to change local and recommit. Only support @gmail.com or @qq.com or @users.noreply.github.com
+    exit 2;
+    ;;
+esac
