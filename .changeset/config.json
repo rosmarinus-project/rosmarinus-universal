@@ -8,6 +8,7 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@rosmarinus/nx-plugin"
+    "@rosmarinus/nx-plugin",
+    "@rosmarinus/scripts"
   ]
 }
