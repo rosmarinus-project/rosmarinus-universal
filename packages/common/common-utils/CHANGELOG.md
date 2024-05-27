@@ -1,5 +1,11 @@
 # @rosmarinus/common-utils
 
+## 3.0.11
+
+### Patch Changes
+
+- 51f29e2: publish release tag
+
 ## 3.0.10
 
 ### Patch Changes
