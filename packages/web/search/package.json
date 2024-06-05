@@ -1,6 +1,6 @@
 {
   "name": "@rosmarinus/search",
-  "version": "0.1.22",
+  "version": "0.2.0",
   "description": "search for rosmarinus projects",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
