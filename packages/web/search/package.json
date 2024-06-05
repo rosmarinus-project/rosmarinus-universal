@@ -36,6 +36,7 @@
   "license": "MIT",
   "dependencies": {
     "@rosmarinus/common-utils": "workspace:^3.0.4",
+    "fuzzysort": "^3.0.1",
     "pinyin-match": "^1.2.5",
     "tslib": "^2.6.2"
   },

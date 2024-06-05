@@ -4,6 +4,7 @@
     "tailwindcss",
     "nestjs",
     "lcov",
-    "codeflow"
+    "codeflow",
+    "fuzzysort"
   ]
 }

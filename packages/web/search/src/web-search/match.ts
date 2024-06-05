@@ -1,9 +1,23 @@
-import Pinyin from 'pinyin-match';
-import { isArray } from '@rosmarinus/common-utils';
 import { SearchResultSeg } from '../common/types';
-import { chainInvoke, mergeInvokeAll } from './invoke';
+import { mergeInvokeAll } from './invoke';
 import { splitTextInSegmenter } from './segment';
 import { getSegMatchRange, isRangeCross, Range } from './range';
+import { longestSegMatch, MatchResult, pinyinMatch, MatchParams, fuzzyMatch } from './algorithms';
+
+export const enum SearchAlgorithmFlag {
+  /** 最长匹配 */
+  LONGEST_MATCH = 1 << 0,
+  /** 拼音匹配 */
+  PINYIN_MATCH = 1 << 1,
+  /** fuzzysort 匹配 */
+  FUZZYSORT_MATCH = 1 << 2,
+}
+
+export interface SearchOptions {
+  locales?: string;
+  /** 默认用 fuzzysort 匹配和拼音匹配 */
+  enableAlgorithm?: SearchAlgorithmFlag;
+}
 
 export interface SearchMatchResult {
   /** 原料加工后的产物 */
@@ -108,29 +122,26 @@ export function mergeSearchSegList(
   return result;
 }
 
-function matchSegmenter(query: string, source: string): number[] {
-  return (
-    chainInvoke(
-      [
-        ({ query, source }) => {
-          // 不区分大小写
-          const index = source.toLowerCase().indexOf(query.toLowerCase());
+function getMatchFnList(flag?: SearchAlgorithmFlag): ((params: MatchParams) => MatchResult | undefined)[] {
+  const result: ((params: MatchParams) => MatchResult | undefined)[] = [];
 
-          if (~index) {
-            return { res: [index, index + query.length] };
-          }
-        },
-      ],
-      { query, source },
-    ) || []
-  );
-}
+  if (flag === undefined) {
+    result.push(fuzzyMatch, pinyinMatch);
+  } else {
+    if (flag & SearchAlgorithmFlag.LONGEST_MATCH) {
+      result.push(longestSegMatch);
+    }
 
-interface MatchParams {
-  querySegList: string[];
-  sourceSegList: string[];
-  query: string;
-  source: string;
+    if (flag & SearchAlgorithmFlag.FUZZYSORT_MATCH) {
+      result.push(fuzzyMatch);
+    }
+
+    if (flag & SearchAlgorithmFlag.PINYIN_MATCH) {
+      result.push(pinyinMatch);
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -140,13 +151,13 @@ interface MatchParams {
  * @param source 数据原料
  * @returns
  */
-export function match(query: string, source: string, locales?: string): SearchMatchResult {
-  const sourceSegList = splitTextInSegmenter(source, locales).map((seg) => seg.segment);
-  const querySegList = splitTextInSegmenter(query, locales).map((seg) => seg.segment);
+export function match(query: string, source: string, options?: SearchOptions): SearchMatchResult {
+  const sourceSegList = splitTextInSegmenter(source, options?.locales).map((seg) => seg.segment);
+  const querySegList = splitTextInSegmenter(query, options?.locales).map((seg) => seg.segment);
 
   const resultSegList =
     mergeInvokeAll(
-      [longestSegMatch, pinyinMatch],
+      getMatchFnList(options?.enableAlgorithm),
       (res) => {
         let result: SearchResultSeg[] = [];
 
@@ -174,69 +185,4 @@ export function match(query: string, source: string, locales?: string): SearchMa
     matchCount: count,
     sourceSegList: resultSegList,
   };
-}
-
-function longestSegMatch({ sourceSegList, querySegList }: MatchParams) {
-  const resultSegList: SearchResultSeg[] = [];
-
-  sourceSegList.forEach((sourceSeg) => {
-    let thisSourceSegList: SearchResultSeg[] = [];
-    let hitLen = 0;
-
-    querySegList.forEach((querySeg) => {
-      const matchRange = matchSegmenter(querySeg, sourceSeg);
-
-      if (matchRange.length === 2 && !!querySeg.trim()) {
-        // 看看命中多少个
-        const prefixPart = sourceSeg.slice(0, matchRange[0]);
-        const suffixPart = sourceSeg.slice(matchRange[1]);
-
-        if (matchRange[1] - matchRange[0] <= hitLen) {
-          // 只要最长匹配
-          return;
-        }
-
-        thisSourceSegList = [
-          { segment: prefixPart, type: 'normal' },
-          { segment: sourceSeg.slice(matchRange[0], matchRange[1]), type: 'match' },
-          { segment: suffixPart, type: 'normal' },
-        ];
-        hitLen = matchRange[1] - matchRange[0];
-      }
-    });
-
-    if (hitLen === 0) {
-      // 不命中
-      resultSegList.push({ segment: sourceSeg, type: 'normal' });
-
-      return;
-    }
-
-    resultSegList.push(...thisSourceSegList);
-  });
-
-  return { res: resultSegList };
-}
-
-function pinyinMatch({ source, query }: MatchParams) {
-  const res = Pinyin.match(source, query);
-
-  const result: SearchResultSeg[] = [];
-
-  if (!isArray(res)) {
-    return undefined;
-  }
-
-  const start = res[0] ?? 0;
-  const end = (res[1] ?? 0) + 1;
-
-  if (end <= start) {
-    return undefined;
-  }
-
-  start > 0 && result.push({ segment: source.slice(0, start), type: 'normal' });
-  result.push({ segment: source.slice(start, end), type: 'match' });
-  end < source.length && result.push({ segment: source.slice(end), type: 'normal' });
-
-  return { res: result };
 }
