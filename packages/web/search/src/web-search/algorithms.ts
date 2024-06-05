@@ -115,9 +115,9 @@ export function fuzzyMatch({ source, query }: MatchParams): MatchResult | undefi
       index += 1;
     }
 
-    if (idx < index) {
-      matchResult.push({ segment: source.slice(idx, index), type: 'match' });
-    }
+    matchResult.push({ segment: source.slice(idx, index + 1), type: 'match' });
+
+    idx = index + 1;
   }
 
   return { res: matchResult };

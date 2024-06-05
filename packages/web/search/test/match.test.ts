@@ -76,4 +76,29 @@ describe('match', () => {
       },
     ]);
   });
+
+  test('2 part match', () => {
+    expect(match('packa/ui-button', 'f/packages/ui-button/src/a.vue').sourceSegList).toStrictEqual([
+      {
+        segment: 'f/',
+        type: 'normal',
+      },
+      {
+        segment: 'packa',
+        type: 'match',
+      },
+      {
+        segment: 'ges',
+        type: 'normal',
+      },
+      {
+        segment: '/ui-button',
+        type: 'match',
+      },
+      {
+        segment: '/src/a.vue',
+        type: 'normal',
+      },
+    ]);
+  });
 });
