@@ -159,7 +159,7 @@ export function match(query: string, source: string, options?: SearchOptions): S
     mergeInvokeAll(
       getMatchFnList(options?.enableAlgorithm),
       (res) => {
-        let result: SearchResultSeg[] = [];
+        let result: SearchResultSeg[] = [{ type: 'normal', segment: source }];
 
         res.forEach((segList) => {
           result = mergeSearchSegList(result, segList, source);

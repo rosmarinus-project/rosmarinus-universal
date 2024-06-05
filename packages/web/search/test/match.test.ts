@@ -101,4 +101,13 @@ describe('match', () => {
       },
     ]);
   });
+
+  test('match empty', () => {
+    expect(match('yyy', 'xxxxx').sourceSegList).toStrictEqual([
+      {
+        segment: 'xxxxx',
+        type: 'normal',
+      },
+    ]);
+  });
 });
