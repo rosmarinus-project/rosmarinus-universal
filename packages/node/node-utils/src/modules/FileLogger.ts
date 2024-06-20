@@ -19,6 +19,8 @@ export interface FileLoggerOptions {
   fileLevel?: 'error' | 'info';
   /** 默认东八区 */
   timeZone?: string;
+  /** 日志大小上限设置，超过会自动清理，默认 100m */
+  maxSize?: string;
   /** 转换某些特定对象到前边 */
   transformToPrefix?: {
     [key: string | symbol]: (val: any) => { output: string };
@@ -27,6 +29,25 @@ export interface FileLoggerOptions {
 
 const TIME_FORMAT = 'ZZ YYYY-MM-DD HH:mm:ss';
 
+function transformSizeFromStringToNumber(size: string) {
+  const sizeStr = size.slice(0, -1);
+  const unit = size.slice(-1);
+
+  if (unit === 'm') {
+    return Number(sizeStr) * 1024 * 1024;
+  }
+
+  if (unit === 'k') {
+    return Number(sizeStr) * 1024;
+  }
+
+  if (unit === 'g') {
+    return Number(sizeStr) * 1024 * 1024 * 1024;
+  }
+
+  return Number(sizeStr);
+}
+
 // eslint-disable-next-line max-lines-per-function
 export function initFileLoggerFactory({
   fileMode = 'in-hour',
@@ -34,6 +55,7 @@ export function initFileLoggerFactory({
   fileLevel = 'info',
   timeZone = 'Asia/Shanghai',
   logFileDir,
+  maxSize,
   transformToPrefix,
 }: FileLoggerOptions): FileLoggerFactory {
   const customFormat = format.printf((data) => {
@@ -102,12 +124,16 @@ export function initFileLoggerFactory({
         filename: 'log-%DATE%.log',
         datePattern: 'YYYY-MM-DD-HH',
         // zippedArchive: true,
-        maxSize: '100m',
+        maxSize: maxSize || '100m',
       }),
     );
   } else {
     logger.add(
-      new transports.File({ dirname: logFileDir, filename: fileLevel === 'error' ? 'error.log' : 'combined.log' }),
+      new transports.File({
+        dirname: logFileDir,
+        filename: fileLevel === 'error' ? 'error.log' : 'combined.log',
+        maxsize: maxSize ? transformSizeFromStringToNumber(maxSize) : 100 * 1024 * 1024,
+      }),
     );
   }
 
