@@ -1,5 +1,11 @@
 # @rosmarinus/common-utils
 
+## 3.1.0
+
+### Minor Changes
+
+- 624a0c7: add kv and url functions
+
 ## 3.0.11
 
 ### Patch Changes
