@@ -1,9 +1,11 @@
-describe('样例', () => {
+import { describe, beforeEach, afterEach, test } from '@jest/globals';
+
+describe('example', () => {
   beforeEach(() => {});
 
   afterEach(() => {});
 
-  test('样例', () => {
+  test('case', () => {
     console.log('hello test');
   });
 });

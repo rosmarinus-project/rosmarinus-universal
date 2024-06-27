@@ -1,3 +1,4 @@
+import { describe, it, expect } from '@jest/globals';
 import { AsyncTask, AsyncTaskPool } from '../../src';
 
 // eslint-disable-next-line max-lines-per-function

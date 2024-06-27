@@ -1,13 +1,14 @@
 import { resolve } from 'path';
+import { describe, beforeEach, afterEach, test } from '@jest/globals';
 import { genExportMap } from '../src';
 import { loadContext } from '../src/context';
 
-describe('样例', () => {
+describe('example', () => {
   beforeEach(() => {});
 
   afterEach(() => {});
 
-  test('样例', async () => {
+  test('case', async () => {
     const ctx = await loadContext({
       config: resolve('map.config.js'),
     });
