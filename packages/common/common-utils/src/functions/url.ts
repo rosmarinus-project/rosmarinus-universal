@@ -25,3 +25,28 @@ export function urlToJson(url: string): Record<string, string> {
 
   return result;
 }
+
+export function parseURLSearchParams(url?: string): [string, Record<string, string>] {
+  if (!url) {
+    return ['', {}] as const;
+  }
+
+  const [urlWithoutSearch, search] = url.split('?');
+
+  if (!search) {
+    return [urlWithoutSearch, {}] as const;
+  }
+
+  return [urlWithoutSearch, Object.fromEntries(new URLSearchParams(search))] as const;
+}
+
+export function stringifyURLSearchParams(url: string, search?: Record<string, string>): string {
+  const searchParams = new URLSearchParams(search);
+  const searchStr = searchParams.toString();
+
+  if (!searchStr) {
+    return url;
+  }
+
+  return `${url}?${searchStr}`;
+}

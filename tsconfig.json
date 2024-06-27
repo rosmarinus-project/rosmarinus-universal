@@ -26,6 +26,7 @@
 
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["node", "jest"],
     "outDir": "dist",
     "paths": {
       // 模块名到路径映射列表
