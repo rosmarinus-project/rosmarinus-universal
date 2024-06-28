@@ -1,5 +1,11 @@
 # @rosmarinus/nest-core
 
+## 2.1.8
+
+### Patch Changes
+
+- 982a0fa: external
+
 ## 2.1.7
 
 ### Patch Changes
