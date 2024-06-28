@@ -52,10 +52,18 @@ function getDefaultBabelConfig() {
 }
 
 export function defaultConfigGenerator(format: ModuleFormat, external?: string[], banner?: string) {
+  const ext = (() => {
+    if (format === 'cjs' || format === 'commonjs') {
+      return 'cjs';
+    }
+
+    return 'js';
+  })();
+
   return {
     input: 'src/index.ts',
     output: {
-      file: `dist/${format}/index.js`,
+      file: `dist/${format}/index.${ext}`,
       format,
       banner,
       sourcemap: true,
