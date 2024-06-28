@@ -4,6 +4,7 @@
   "description": "nest core modules for rosmarinus projects",
   "main": "dist/cjs/index.cjs",
   "module": "dist/es/index.js",
+  "types": "dist/es/index.d.ts",
   "type": "module",
   "publishConfig": {
     "access": "public",
