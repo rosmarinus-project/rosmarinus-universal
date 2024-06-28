@@ -1,5 +1,11 @@
 # @rosmarinus/nest-core
 
+## 2.1.6
+
+### Patch Changes
+
+- 49ec3c2: fix types
+
 ## 2.1.5
 
 ### Patch Changes
