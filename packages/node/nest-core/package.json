@@ -1,6 +1,6 @@
 {
   "name": "@rosmarinus/nest-core",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "nest core modules for rosmarinus projects",
   "main": "dist/cjs/index.cjs",
   "module": "dist/es/index.js",
@@ -36,7 +36,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@rosmarinus/common-utils": "workspace:^3.0.4",
+    "@rosmarinus/common-utils": "workspace:^3.1.0",
     "@rosmarinus/node-utils": "workspace:^0.3.0",
     "ioredis": "^5.4.1",
     "knex": "^3.1.0",

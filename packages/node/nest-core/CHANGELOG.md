@@ -1,5 +1,13 @@
 # @rosmarinus/nest-core
 
+## 2.1.5
+
+### Patch Changes
+
+- b9e2684: fix cjs
+  - @rosmarinus/common-utils@3.1.0
+  - @rosmarinus/node-utils@0.3.0
+
 ## 2.1.4
 
 ### Patch Changes
