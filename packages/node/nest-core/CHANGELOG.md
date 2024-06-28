@@ -1,5 +1,11 @@
 # @rosmarinus/nest-core
 
+## 2.1.7
+
+### Patch Changes
+
+- 60c029b: fix cjs
+
 ## 2.1.6
 
 ### Patch Changes
