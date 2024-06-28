@@ -1,5 +1,11 @@
 # @rosmarinus/nest-core
 
+## 2.1.4
+
+### Patch Changes
+
+- 0c003d9: fix CVE-2024-21508
+
 ## 2.1.3
 
 ### Patch Changes
