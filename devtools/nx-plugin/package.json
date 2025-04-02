@@ -5,7 +5,7 @@
   "executors": "./executors.json",
   "private": "true",
   "dependencies": {
-    "@nx/devkit": "^19.1.0",
+    "@nx/devkit": "^20.7.0",
     "fs-extra": "^11.2.0",
     "semver": "^7.6.2",
     "zx": "^8.1.1"

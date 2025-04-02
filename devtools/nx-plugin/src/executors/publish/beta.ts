@@ -30,7 +30,7 @@ export default async function packagePublishBetaExecutor(
   context: ExecutorContext,
 ): Promise<{ success: boolean }> {
   const { projectName } = context;
-  const projectPath = context?.workspace?.projects[projectName].sourceRoot;
+  const projectPath = context.projectsConfigurations?.projects[projectName].sourceRoot;
 
   const packageJson = readJSONSync(`${projectPath}/package.json`);
 

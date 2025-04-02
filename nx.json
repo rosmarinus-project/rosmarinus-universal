@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "$schema": "node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "main",
   "targetDefaults": {
     "dev": {
@@ -10,7 +10,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["default", "^default"]
     },
     "beta": {
       "dependsOn": ["build"]
@@ -19,10 +19,10 @@
       "dependsOn": ["build"]
     }
   },
-  "extends": "./node_modules/nx/presets/npm.json",
+  "extends": "nx/presets/npm.json",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "./node_modules/nx/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": ["build", "config"],
         "parallel": 8

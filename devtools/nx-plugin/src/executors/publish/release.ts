@@ -13,7 +13,7 @@ export default async function packagePublishReleaseExecutor(
     throw new Error('No project name provided');
   }
 
-  const projectPath = context.workspace?.projects[projectName].sourceRoot;
+  const projectPath = context.projectsConfigurations?.projects[projectName].sourceRoot;
   const { version, name } = await readJSON(`${projectPath}/package.json`);
 
   try {
