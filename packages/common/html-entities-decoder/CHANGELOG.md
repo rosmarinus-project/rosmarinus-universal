@@ -1,5 +1,11 @@
 # @rosmarinus/html-entities-decoder
 
+## 0.0.3
+
+### Patch Changes
+
+- d158ffd: fix publish
+
 ## 0.0.2
 
 ### Patch Changes
