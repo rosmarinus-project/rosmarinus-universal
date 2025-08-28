@@ -25,6 +25,12 @@ export class AsyncTask<T> {
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
+  private isDone = false;
+
+  public get hasDone() {
+    return this.isDone;
+  }
+
   public constructor() {
     this.promise = new Promise<T>((resolve, reject) => {
       this.resolve = resolve;
@@ -38,6 +44,7 @@ export class AsyncTask<T> {
    * @param data 任务完成时的数据，会给到 promise
    */
   public done(data: T) {
+    this.isDone = true;
     this.resolve?.(data);
   }
 
@@ -47,6 +54,7 @@ export class AsyncTask<T> {
    * @param err 任务失败时的错误信息，会以错误的形式抛给 promise
    */
   public fail(err: any) {
+    this.isDone = true;
     this.reject?.(err);
   }
 
