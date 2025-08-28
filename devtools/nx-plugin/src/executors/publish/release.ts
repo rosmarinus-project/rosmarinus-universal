@@ -28,7 +28,7 @@ export default async function packagePublishReleaseExecutor(
       }
     })()
 
-    if (latest && semver.gte(latest, version) || !latest) {
+    if (latest && semver.gte(latest, version)) {
       console.log(`${name} ${latest} greater than local ${version}`);
 
       return {
