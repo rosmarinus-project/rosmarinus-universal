@@ -20,3 +20,13 @@ monorepo for all rosmarinus projects
 10. [@rosmarinus/import-map-generator](./packages/pack/import-map-generator/README.md) for generating export map
 11. [@rosmarinus/potato-observer](./packages/web/potato-observer/README.md) for expose observer working in browser
 12. [@rosmarinus/search](./packages/web/search/README.md) for searching algorithm working in browser
+13. [@rosmarinus/html-entities-decoder](./packages/common/html-entities-decoder/README.md) for decoding html entities
+
+## How to dev
+```bash
+# install dependencies
+pnpm install
+
+# publish
+pnpm changeset
+```
