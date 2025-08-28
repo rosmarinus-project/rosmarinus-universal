@@ -1,5 +1,11 @@
 # @rosmarinus/common-utils
 
+## 3.1.1
+
+### Patch Changes
+
+- 72b7b5b: asyncTask support hasDone
+
 ## 3.1.0
 
 ### Minor Changes
