@@ -19,10 +19,16 @@ export default async function packagePublishReleaseExecutor(
   try {
     cd(projectPath);
 
-    const res = await $`npm view ${name} version`;
-    const latest = res.stdout;
+    const latest = await (async () => {
+      try {
+        const res = await $`npm view ${name} version`;
+        return res.stdout;
+      } catch (e) {
+        return '';
+      }
+    })()
 
-    if (latest && semver.gte(latest, version)) {
+    if (latest && semver.gte(latest, version) || !latest) {
       console.log(`${name} ${latest} greater than local ${version}`);
 
       return {
